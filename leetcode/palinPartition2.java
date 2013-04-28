@@ -1,25 +1,41 @@
-public class Solution {
+public class palinPartition2 {
+	public static void main(String args[]) {
+		String str = "abcbad";
+		Solution cl = new Solution();
+
+		System.out.println(cl.minCut(str));
+	}
+
+}
+
+
+class Solution {
     public int minCut(String s) {
         // Start typing your Java solution below
         // DO NOT write main() function
         boolean isPalin[][] = partition(s);
-        
-        return recur(isPalin, 0, s.length() - 1) - 1;
-        
+        int dp[] = new int[s.length()];
+		int i;
+		for (i = 0; i < s.length(); i++) dp[i] = -1;
+
+        return recur(isPalin, 0, s.length() - 1, dp) - 1;        
     }
     
-    private int recur(boolean isPalin[][], int index, int len) {
+    private int recur(boolean isPalin[][], int index, int len, int dp[]) {
         
         int i;
         int minc = Integer.MAX_VALUE;
         
         if (index > len) return 0;
 
+		if (dp[index] != -1) return dp[index];
+
         for (i = index; i <= len; i++) {
             if (isPalin[index][i])
-                minc = Math.min(recur(isPalin, i+1, len) + 1, minc);
+                minc = Math.min(recur(isPalin, i+1, len, dp) + 1, minc);
         }
-        
+
+		dp[index] = minc;        
         return minc;
     }
     

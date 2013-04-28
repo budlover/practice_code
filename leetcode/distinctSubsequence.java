@@ -2,7 +2,7 @@ public class distinctSubsequence {
 	public static void main(String args[]) {
 		Solution cl = new Solution();
 
-		System.out.println(cl.numDistinct("b","a"));
+		System.out.println(cl.numDistinct("aaa","a"));
 	}
 
 }
